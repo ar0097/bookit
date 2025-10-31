@@ -9,7 +9,11 @@ interface NavbarProps {
   setText: React.Dispatch<React.SetStateAction<string>>;
 }
 
-function Navbar({ handleSearch, text, setText }: NavbarProps) {
+function Navbar({
+  handleSearch = () => {},
+  text = "",
+  setText = () => {},
+}: any) {
   return (
     <div className="w-full bg-[#F9F9F9] py-4 px-6 md:px-16 lg:px-[124px] flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-0">
       <div className="w-[100px] h-[55px] flex justify-center sm:justify-start">
