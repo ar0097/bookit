@@ -9,7 +9,6 @@ function Result() {
         src={success}
         alt="Success icon"
         className="w-16 h-16 sm:w-20 sm:h-20 object-contain"
-        priority
       />
 
       <p className="font-semibold text-[24px] sm:text-[32px] text-[#161616] mt-4">
