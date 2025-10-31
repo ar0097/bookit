@@ -11,67 +11,80 @@ import boat from "../assets/boat.jpg";
 import jumping from "../assets/jumping.jpg";
 import trail1 from "../assets/trail1.jpg";
 
-const data = [
-  {
-    text: "Kayaking",
-    location: "Udupi",
-    price: 999,
-    img: kayaking,
-  },
-  {
-    text: "Nandi Hills Sunrise",
-    location: "Bangalore",
-    price: 899,
-    img: sunrise,
-  },
-  {
-    text: "Coffee Trail",
-    location: "Coorg",
-    price: 1299,
-    img: trail,
-  },
-  {
-    text: "Kayaking",
-    location: "Udupi, Karnataka",
-    price: 999,
-    img: kayaking1,
-  },
-  {
-    text: "Nandi Hills Sunrise",
-    location: "Bangalore",
-    price: 899,
-    img: sunrise1,
-  },
-  {
-    text: "Boat Cruise",
-    location: "Sunderban",
-    price: 999,
-    img: boat,
-  },
-  {
-    text: "Bunjee Jumping",
-    location: "Manali",
-    price: 999,
-    img: jumping,
-  },
-  {
-    text: "Coffee Trail",
-    location: "Coorg",
-    price: 1299,
-    img: trail1,
-  },
-];
+// const data = [
+//   {
+//     text: "Kayaking",
+//     location: "Udupi",
+//     price: 999,
+//     img: kayaking,
+//   },
+//   {
+//     text: "Nandi Hills Sunrise",
+//     location: "Bangalore",
+//     price: 899,
+//     img: sunrise,
+//   },
+//   {
+//     text: "Coffee Trail",
+//     location: "Coorg",
+//     price: 1299,
+//     img: trail,
+//   },
+//   {
+//     text: "Kayaking",
+//     location: "Udupi, Karnataka",
+//     price: 999,
+//     img: kayaking1,
+//   },
+//   {
+//     text: "Nandi Hills Sunrise",
+//     location: "Bangalore",
+//     price: 899,
+//     img: sunrise1,
+//   },
+//   {
+//     text: "Boat Cruise",
+//     location: "Sunderban",
+//     price: 999,
+//     img: boat,
+//   },
+//   {
+//     text: "Bunjee Jumping",
+//     location: "Manali",
+//     price: 999,
+//     img: jumping,
+//   },
+//   {
+//     text: "Coffee Trail",
+//     location: "Coorg",
+//     price: 1299,
+//     img: trail1,
+//   },
+// ];
 
 interface TypesData {
   text: string;
   location: string;
   price: number;
   img: any;
+  id: string;
 }
 
 function page() {
-  const [exp, setExp] = useState<TypesData[]>(data);
+  const [exp, setExp] = useState<TypesData[]>([]);
+  const [data, setData] = useState([]);
   const [text, setText] = useState("");
+
+  console.log("exp", exp);
+
+  useEffect(() => {
+    fetch("https://bookit-jyiw.onrender.com/api/experiences")
+      .then((data) => data.json())
+      .then((result) => {
+        setExp(result);
+        setData(result);
+      });
+  }, []);
 
   useEffect(() => {
     if (text === "") {
@@ -87,7 +100,7 @@ function page() {
     console.log(newData);
     setExp(newData);
   };
-  
+
   return (
     <div>
       <Navbar handleSearch={handleSearch} setText={setText} text={text} />

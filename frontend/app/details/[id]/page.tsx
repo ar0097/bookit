@@ -1,12 +1,15 @@
+"use client";
 import Details from "@/components/Details";
 import Navbar from "@/components/Navbar";
+import { useParams } from "next/navigation";
 import React from "react";
 
 function page() {
+  const { id } = useParams();
   return (
     <div>
       <Navbar />
-      <Details />
+      <Details id={id} />
     </div>
   );
 }

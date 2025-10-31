@@ -19,9 +19,19 @@ router.post("/", async (req, res) => {
             return res.status(400).json({ message: "All fields including id are required" });
         }
 
-        const existing = await Booking.findOne({ experienceId: id });
+        const existing = await Booking.findOne({
+            id,
+            experience,
+            date,
+            time,
+            qty,
+            subtotal,
+            taxes,
+            total,
+        });
+
         if (existing) {
-            return res.status(400).json({ message: "Booking with this ID already exists" });
+            return res.status(400).json({ message: "This exact booking already exists" });
         }
 
         const booking = await Booking.create({

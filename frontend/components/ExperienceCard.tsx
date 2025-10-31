@@ -1,10 +1,12 @@
 import Image from "next/image";
+import Link from "next/link";
 
 interface TypesData {
   text: string;
   location: string;
   price: number;
   img: string;
+  id: string;
 }
 
 interface ExperienceCardProps {
@@ -26,6 +28,7 @@ function ExperienceCard({ data }: ExperienceCardProps) {
               width={280}
               height={180}
               className="w-full h-full object-cover rounded-t-xl"
+              unoptimized
             />
           </div>
 
@@ -49,9 +52,11 @@ function ExperienceCard({ data }: ExperienceCardProps) {
                 <h1 className="text-[12px] font-normal">From</h1>
                 <p className="font-medium text-[20px]">₹{ele.price}</p>
               </div>
-              <button className="bg-[#FFD643] py-1.5 px-3 rounded-sm font-medium text-[14px] hover:bg-[#f0c832] transition-colors">
-                View Detail
-              </button>
+              <Link href={`details/${ele.id}`}>
+                <button className="bg-[#FFD643] py-1.5 px-3 rounded-sm font-medium text-[14px] hover:bg-[#f0c832] transition-colors">
+                  View Detail
+                </button>
+              </Link>
             </div>
           </div>
         </div>
